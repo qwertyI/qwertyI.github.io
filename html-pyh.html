@@ -61,7 +61,7 @@
       <h2>PyH.py 深入理解</h2>
 <p>PyH is a simple python module (pyh.py) that lets you generate html output in a convenient and intuitive manner.</p>
 <p>官方的解释很简单，用一种很方便很直观的方式去生成html界面。</p>
-<h5>1.先来用它</h5>
+<h3>1.先来用它</h3>
 <p><strong>1.</strong>
 一个最简单的PyH程序，生成一个空白界面，只含有一个title。</p>
 <div class="highlight"><pre><span></span>page = PyH(&#39;test&#39;)
@@ -84,7 +84,7 @@ print page.render()
 
 
 <p>pyh.py的使用非常方便也非常直观正如它的说明一样，新的标签只需要用类似<code>&lt;&lt; table()</code>的代码就可以加入到我们的page，我们也可以通过<code>tr1 = tr(bgcolor='#FFFFFF')</code>去实例化一个Tag，在里面添加我们需要的属性然后在加入我们的page中。所有的Tag都可以使用<code>&lt;&lt;</code>去设定自己的子节点标签。</p>
-<h5>2.来看源码</h5>
+<h3>2.来看源码</h3>
 <p><strong>1.Tag的<code>__init__</code>作用</strong></p>
 <div class="highlight"><pre><span></span>def __init__(self, *arg, **kw):
     print arg
@@ -158,7 +158,7 @@ for t in tags: setattr(thisModule, t, TagFactory(t))
 
 
 <p>很明显，这是整个程序可以完成生成网页这个任务的最重要一步，工厂中有一个类f，继承自Tag类，整个工厂最后会返回这个f，然后每个Tags中的标签都会是f的实例。从而我们可以使用<code>page &lt;&lt; h1('aaa')</code>去加入我们想要的标签。</p>
-<h5>3.总结</h5>
+<h3>3.总结</h3>
 <p>pyh的源码看到这里，代码很少，而且相对来说也比较容易理解，不过对我来说&lt;&lt;这个点以前完全没有注意到，我也是基于想要了解&lt;&lt;是怎么工作的才翻看了整个代码，从而又额外学习到了工厂的知识，获益良多。里面肯定还有疏漏的地方，也有理解不深或懒得继续探究而没有看出来的精彩代码，只能留待以后了（笑）。</p>
     </div>
   </div>
