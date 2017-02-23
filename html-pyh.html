@@ -2,63 +2,69 @@
 <html lang="zh">
 
 <head>
-      <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="canonical" href="https://qwertyI.github.io/html-pyh.html" />
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>  Ning's Blog &mdash; PyH.py深入理解
+  <title>PyH.py深入理解 | Ning's Blog
 </title>
+  <link rel="canonical" href="https://qwertyI.github.io/html-pyh.html">
 
 
 
-
-    <link rel="stylesheet" href="https://qwertyI.github.io/theme/css/style.css">
-
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <link rel="stylesheet" href="https://qwertyI.github.io/theme/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://qwertyI.github.io/theme/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://qwertyI.github.io/theme/css/pygments/default.min.css">
+  <link rel="stylesheet" href="https://qwertyI.github.io/theme/css/style.css">
 
 
-    <meta name="author" content="Ning">
-    <meta name="description" content="python">
-  <meta name="tags" contents="python, test, ">
+<meta name="description" content="python">
 </head>
 
 <body>
-<header class="header">
-  <div class="container">
-    <div class="header-inner">
-      <h1 class="header-name">
-        <a class="nodec" href="https://qwertyI.github.io">Ning's Blog</a>
-      </h1>
-      <h3 class="header-text"></h3>
-      <ul class="header-menu list-inline">
-          <li><a class="nodec icon-mail-alt" href="mailto:727665171@qq.com"></a></li>
-          <li><a class="nodec icon-github" href="https://github.com/qwertyI"></a></li>
-      </ul>
+  <header class="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1 class="title"><a href="https://qwertyI.github.io">Ning's Blog</a></h1>
+          <ul class="list-inline">
+            <li class="list-inline-item"><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
+            <li class="list-inline-item"><a href="http://python.org/" target="_blank">Python.org</a></li>
+            <li class="list-inline-item"><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
+            <li class="list-inline-item"><a href="#" target="_blank">cnblog</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </div>
-</header> <!-- /.header -->  <div class="container">
-  <div class="post full-post">
-    <h1 class="post-title">
-      <a href="/html-pyh.html" title="Permalink to PyH.py深入理解">PyH.py深入理解</a>
-    </h1>
+  </header>
+
+  <div class="main">
+    <div class="container">
+      <h1>PyH.py深入理解
+</h1>
+      <hr>
+<article class="article">
+  <header>
     <ul class="list-inline">
-      <li class="post-date">
-        <a class="text-muted" href="/html-pyh.html" title="2017-02-15T10:20:00">三 15 二月 2017</a>
+      <li class="list-inline-item text-muted" title="2017-02-15T10:20:00">
+        <i class="fa fa-clock-o"></i>
+        三 15 二月 2017
       </li>
-      <li class="muted">&middot;</li>
-      <li class="post-category">
+      <li class="list-inline-item">
+        <i class="fa fa-folder-open-o"></i>
         <a href="https://qwertyI.github.io/category/python.html">Python</a>
       </li>
-        <li class="muted">&middot;</li>
-        <li>
-            <a href="https://qwertyI.github.io/tag/python.html">python</a>,             <a href="https://qwertyI.github.io/tag/test.html">test</a>        </li>
+      <li class="list-inline-item">
+        <i class="fa fa-user-o"></i>
+        <a href="https://qwertyI.github.io/">N</a>,         <a href="https://qwertyI.github.io/">i</a>,         <a href="https://qwertyI.github.io/">n</a>,         <a href="https://qwertyI.github.io/">g</a>      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-files-o"></i>
+        <a href="https://qwertyI.github.io/tag/python.html">#python</a>,         <a href="https://qwertyI.github.io/tag/test.html">#test</a>      </li>
     </ul>
-    <div class="post-content">
-      <h2>PyH.py 深入理解</h2>
+  </header>
+  <div class="content">
+    <h2>PyH.py 深入理解</h2>
 <p>PyH is a simple python module (pyh.py) that lets you generate html output in a convenient and intuitive manner.</p>
 <p>官方的解释很简单，用一种很方便很直观的方式去生成html界面。</p>
 <h3>1.先来用它</h3>
@@ -160,24 +166,26 @@ for t in tags: setattr(thisModule, t, TagFactory(t))
 <p>很明显，这是整个程序可以完成生成网页这个任务的最重要一步，工厂中有一个类f，继承自Tag类，整个工厂最后会返回这个f，然后每个Tags中的标签都会是f的实例。从而我们可以使用<code>page &lt;&lt; h1('aaa')</code>去加入我们想要的标签。</p>
 <h3>3.总结</h3>
 <p>pyh的源码看到这里，代码很少，而且相对来说也比较容易理解，不过对我来说&lt;&lt;这个点以前完全没有注意到，我也是基于想要了解&lt;&lt;是怎么工作的才翻看了整个代码，从而又额外学习到了工厂的知识，获益良多。里面肯定还有疏漏的地方，也有理解不深或懒得继续探究而没有看出来的精彩代码，只能留待以后了（笑）。</p>
+  </div>
+</article>
     </div>
   </div>
-  <hr class="separator">
-  <div class="col-md-8 col-md-offset-2">
-  </div>
-  </div>
-<footer class="footer">
-  <div class="container">
-    <p class="text-center">
-      Ning, <a href="" target="_blank"></a> unless otherwise noted.
-    </p>
-    <div class="text-center">
-      Generated by <a href="http://getpelican.com" target="_blank">Pelican</a> with the <a href="http://github.com/nairobilug/pelican-alchemy">alchemy</a> theme.
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+       <ul class="col-sm-6 list-inline">
+          <li class="list-inline-item"><a href="https://qwertyI.github.io/authors.html">Authors</a></li>
+          <li class="list-inline-item"><a href="https://qwertyI.github.io/archives.html">Archives</a></li>
+          <li class="list-inline-item"><a href="https://qwertyI.github.io/categories.html">Categories</a></li>
+          <li class="list-inline-item"><a href="https://qwertyI.github.io/tags.html">Tags</a></li>
+        </ul>
+        <p class="col-sm-6 text-sm-right text-muted">
+          Generated by <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a> / <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">&#x2728;</a>
+        </p>
+      </div>
     </div>
-  </div>
-</footer> <!-- /.footer -->
-  <script src="https://qwertyI.github.io/theme/js/jquery.min.js"></script>
-  <script src="https://qwertyI.github.io/theme/js/bootstrap.min.js"></script>
-</body> <!-- 42 -->
+  </footer>
+</body>
 
 </html>
