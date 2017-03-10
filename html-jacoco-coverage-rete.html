@@ -32,7 +32,7 @@
             <li class="list-inline-item"><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
             <li class="list-inline-item"><a href="http://python.org/" target="_blank">Python.org</a></li>
             <li class="list-inline-item"><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
-            <li class="list-inline-item"><a href="#" target="_blank">cnblog</a></li>
+            <li class="list-inline-item"><a href="https://www.cnblogs.com/" target="_blank">cnblog</a></li>
           </ul>
         </div>
       </div>
@@ -68,67 +68,67 @@
 <p>JaCoCo is a free code coverage library for Java, which has been created by the EclEmma team based on the lessons learned from using and integration existing libraries for many years.</p>
 <h2>在Android Studio中使用它</h2>
 <p>Jacoco在AS中的使用非常简单，下面是配置代码</p>
-<div class="highlight"><pre><span></span><span class="x">apply plugin: &#39;com.android.application&#39;</span>
+<div class="highlight"><pre><span class="nt">apply</span> <span class="nt">plugin</span><span class="o">:</span> <span class="s1">&#39;com.android.application&#39;</span>
 
-<span class="x">android </span><span class="err">{</span><span class="x"></span>
-<span class="x">    compileSdkVersion 19</span>
-<span class="x">    buildToolsVersion &quot;22.0.0&quot;</span>
+<span class="nt">android</span> <span class="p">{</span>
+    <span class="n">compileSdkVersion</span> <span class="m">19</span>
+    <span class="n">buildToolsVersion</span> <span class="s2">&quot;22.0.0&quot;</span>
 
-<span class="x">    defaultConfig </span><span class="err">{</span><span class="x"></span>
-<span class="x">        applicationId &quot;com.percolata.fusionsensor&quot;</span>
-<span class="x">        testInstrumentationRunner &quot;android.support.test.runner.AndroidJUnitRunner&quot;</span>
-<span class="x">        minSdkVersion 19</span>
-<span class="x">        targetSdkVersion 19</span>
-<span class="x">    }</span>
+    <span class="n">defaultConfig</span> <span class="err">{</span>
+        <span class="n">applicationId</span> <span class="s2">&quot;com.percolata.fusionsensor&quot;</span>
+        <span class="n">testInstrumentationRunner</span> <span class="s2">&quot;android.support.test.runner.AndroidJUnitRunner&quot;</span>
+        <span class="n">minSdkVersion</span> <span class="m">19</span>
+        <span class="n">targetSdkVersion</span> <span class="m">19</span>
+    <span class="p">}</span>
 
-<span class="x">        sourceSets.main </span><span class="err">{</span><span class="x"></span>
-<span class="x">        jniLibs.srcDir &#39;libs&#39;</span>
-<span class="x">        jni.srcDirs = []</span>
-<span class="x">    }</span>
+        <span class="nt">sourceSets</span><span class="nc">.main</span> <span class="p">{</span>
+        <span class="n">jniLibs</span><span class="o">.</span><span class="n">srcDir</span> <span class="s1">&#39;libs&#39;</span>
+        <span class="n">jni</span><span class="o">.</span><span class="n">srcDirs</span> <span class="o">=</span> <span class="cp">[]</span>
+    <span class="p">}</span>
 
-<span class="x">    buildTypes </span><span class="err">{</span><span class="x"></span>
-<span class="x">        debug </span><span class="err">{</span><span class="x"></span>
-<span class="x">            testCoverageEnabled = true</span>
-<span class="x">        }</span>
-<span class="x">        release </span><span class="err">{</span><span class="x"></span>
-<span class="x">            minifyEnabled false</span>
-<span class="x">            proguardFiles getDefaultProguardFile(&#39;proguard-android.txt&#39;), &#39;proguard-rules.txt&#39;</span>
-<span class="x">        }</span>
-<span class="x">    }</span>
+    <span class="nt">buildTypes</span> <span class="p">{</span>
+        <span class="n">debug</span> <span class="err">{</span>
+            <span class="n">testCoverageEnabled</span> <span class="o">=</span> <span class="n">true</span>
+        <span class="p">}</span>
+        <span class="nt">release</span> <span class="p">{</span>
+            <span class="n">minifyEnabled</span> <span class="n">false</span>
+            <span class="n">proguardFiles</span> <span class="n">getDefaultProguardFile</span><span class="p">(</span><span class="s1">&#39;proguard-android.txt&#39;</span><span class="p">)</span><span class="o">,</span> <span class="s1">&#39;proguard-rules.txt&#39;</span>
+        <span class="p">}</span>
+    <span class="err">}</span>
 
-<span class="x">    jacoco</span><span class="err">{</span><span class="x"></span>
-<span class="x">        version &quot;0.7.4.201502262128&quot;</span>
-<span class="x">    }</span>
-<span class="x">}</span>
+    <span class="nt">jacoco</span><span class="p">{</span>
+        <span class="n">version</span> <span class="s2">&quot;0.7.4.201502262128&quot;</span>
+    <span class="p">}</span>
+<span class="err">}</span>
 
-<span class="x">task jacocoTestReport(type:JacocoReport,dependsOn:&quot;connectedAndroidTest&quot;)</span><span class="err">{</span><span class="x"></span>
-<span class="x">    group = &quot;Reporting&quot;</span>
-<span class="x">    description = &quot;Generate Jacoco coverage reports after running tests.&quot;</span>
-<span class="x">    reports</span><span class="err">{</span><span class="x"></span>
-<span class="x">        xml.enabled = false</span>
-<span class="x">        html.enabled = true</span>
-<span class="x">        csv.enabled = false</span>
-<span class="x">    }</span>
-<span class="x">    classDirectories = fileTree(</span>
-<span class="x">            dir : &quot;</span><span class="p">$</span><span class="nv">buildDir</span><span class="x">/intermediates/classes/debug&quot;,</span>
-<span class="x">            excludes : [</span>
-<span class="x">                    &#39;**/*Test.class&#39;,</span>
-<span class="x">                    &#39;**/R.class&#39;,</span>
-<span class="x">                    &#39;**/R</span><span class="p">$</span><span class="x">*.class&#39;,</span>
-<span class="x">                    &#39;**/BuildConfig.*&#39;,</span>
-<span class="x">                    &#39;**/Manifest*.*&#39;</span>
-<span class="x">            ]</span>
-<span class="x">    )</span>
-<span class="x">    def coverageSourceDirs = [&#39;src/main/java&#39;]</span>
-<span class="x">    additionalSourceDirs = files(coverageSourceDirs)</span>
-<span class="x">    sourceDirectories = files(coverageSourceDirs)</span>
-<span class="x">    additionalClassDirs = files(coverageSourceDirs)</span>
-<span class="x">    executionData = files(&quot;</span><span class="p">$</span><span class="nv">buildDir</span><span class="x">/outputs/code-coverage/connected/coverage.ec&quot;)</span>
-<span class="x">}</span>
+<span class="nt">task</span> <span class="nt">jacocoTestReport</span><span class="o">(</span><span class="nt">type</span><span class="nd">:JacocoReport</span><span class="o">,</span><span class="nt">dependsOn</span><span class="o">:</span><span class="s2">&quot;connectedAndroidTest&quot;</span><span class="o">)</span><span class="p">{</span>
+    <span class="n">group</span> <span class="o">=</span> <span class="s2">&quot;Reporting&quot;</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Generate Jacoco coverage reports after running tests.&quot;</span>
+    <span class="n">reports</span><span class="err">{</span>
+        <span class="n">xml</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="n">false</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="n">true</span>
+        <span class="n">csv</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="n">false</span>
+    <span class="p">}</span>
+    <span class="nt">classDirectories</span> <span class="o">=</span> <span class="nt">fileTree</span><span class="o">(</span>
+            <span class="nt">dir</span> <span class="o">:</span> <span class="s2">&quot;$buildDir/intermediates/classes/debug&quot;</span><span class="o">,</span>
+            <span class="nt">excludes</span> <span class="o">:</span> <span class="cp">[</span>
+                    <span class="s1">&#39;**/*Test.class&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;**/R.class&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;**/R$*.class&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;**/BuildConfig.*&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;**/Manifest*.*&#39;</span>
+            <span class="cp">]</span>
+    <span class="o">)</span>
+    <span class="nt">def</span> <span class="nt">coverageSourceDirs</span> <span class="o">=</span> <span class="cp">[</span><span class="s1">&#39;src/main/java&#39;</span><span class="cp">]</span>
+    <span class="nt">additionalSourceDirs</span> <span class="o">=</span> <span class="nt">files</span><span class="o">(</span><span class="nt">coverageSourceDirs</span><span class="o">)</span>
+    <span class="nt">sourceDirectories</span> <span class="o">=</span> <span class="nt">files</span><span class="o">(</span><span class="nt">coverageSourceDirs</span><span class="o">)</span>
+    <span class="nt">additionalClassDirs</span> <span class="o">=</span> <span class="nt">files</span><span class="o">(</span><span class="nt">coverageSourceDirs</span><span class="o">)</span>
+    <span class="nt">executionData</span> <span class="o">=</span> <span class="nt">files</span><span class="o">(</span><span class="s2">&quot;$buildDir/outputs/code-coverage/connected/coverage.ec&quot;</span><span class="o">)</span>
+<span class="err">}</span>
 
-<span class="x">dependencies </span><span class="err">{</span><span class="x"></span>
-<span class="x">    compile &#39;com.android.support:support-v4:19.1.0&#39;</span>
-<span class="x">}</span>
+<span class="nt">dependencies</span> <span class="p">{</span>
+    <span class="n">compile</span> <span class="s1">&#39;com.android.support:support-v4:19.1.0&#39;</span>
+<span class="p">}</span>
 </pre></div>
 
 
@@ -138,11 +138,11 @@
 <p><strong>坑1：难以自拔的想要自己加入jar包</strong></p>
 <p>由于对于AS和gradle的不熟悉（公司主要精力放到Python），搜索时使用Ant配置总会要求加入两个文件jacocoAnt.jar和jacocoagent.jar。</p>
 <p>但是真正的使用方法是</p>
-<div class="highlight"><pre><span></span>apply plugin: &#39;jacoco&#39;
+<div class="highlight"><pre><span class="n">apply</span> <span class="n">plugin</span><span class="o">:</span> <span class="err">&#39;</span><span class="n">jacoco</span><span class="err">&#39;</span>
 
-jacoco {
-    toolVersion = &quot;0.7.5.201505241946&quot;
-}
+<span class="n">jacoco</span> <span class="p">{</span>
+    <span class="n">toolVersion</span> <span class="o">=</span> <span class="s">&quot;0.7.5.201505241946&quot;</span>
+<span class="p">}</span>
 </pre></div>
 
 

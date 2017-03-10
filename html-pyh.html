@@ -32,7 +32,7 @@
             <li class="list-inline-item"><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
             <li class="list-inline-item"><a href="http://python.org/" target="_blank">Python.org</a></li>
             <li class="list-inline-item"><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
-            <li class="list-inline-item"><a href="#" target="_blank">cnblog</a></li>
+            <li class="list-inline-item"><a href="https://www.cnblogs.com/" target="_blank">cnblog</a></li>
           </ul>
         </div>
       </div>
@@ -70,96 +70,96 @@
 <h3>1.先来用它</h3>
 <p><strong>1.</strong>
 一个最简单的PyH程序，生成一个空白界面，只含有一个title。</p>
-<div class="highlight"><pre><span></span>page = PyH(&#39;test&#39;)
-print page.render()
+<div class="highlight"><pre><span class="n">page</span> <span class="o">=</span> <span class="n">PyH</span><span class="p">(</span><span class="err">&#39;</span><span class="n">test</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">print</span> <span class="n">page</span><span class="p">.</span><span class="n">render</span><span class="p">()</span>
 </pre></div>
 
 
 <p><strong>2.</strong>
 新建一个表格，把表格填满数据。</p>
-<div class="highlight"><pre><span></span>ddata = [[1, 2], [2, 3]]
-page = PyH(&#39;test&#39;)
-data_tab = page &lt;&lt; table()
-for i in range(len(data)):
-    tr1 = tr(bgcolor=&#39;#FFFFFF&#39;)
-    row_tr = data_tab &lt;&lt; tr1
-    for j in range(len(data[i])):
-        row_tr &lt;&lt; td(data[i][j]， bgcolor=&#39;#ABABAB&#39;)
-print page.render()
+<div class="highlight"><pre><span class="n">ddata</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
+<span class="n">page</span> <span class="o">=</span> <span class="n">PyH</span><span class="p">(</span><span class="err">&#39;</span><span class="n">test</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">data_tab</span> <span class="o">=</span> <span class="n">page</span> <span class="o">&lt;&lt;</span> <span class="n">table</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="n">in</span> <span class="n">range</span><span class="p">(</span><span class="n">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span><span class="o">:</span>
+    <span class="n">tr1</span> <span class="o">=</span> <span class="n">tr</span><span class="p">(</span><span class="n">bgcolor</span><span class="o">=</span><span class="err">&#39;#</span><span class="n">FFFFFF</span><span class="err">&#39;</span><span class="p">)</span>
+    <span class="n">row_tr</span> <span class="o">=</span> <span class="n">data_tab</span> <span class="o">&lt;&lt;</span> <span class="n">tr1</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="n">in</span> <span class="n">range</span><span class="p">(</span><span class="n">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span><span class="o">:</span>
+        <span class="n">row_tr</span> <span class="o">&lt;&lt;</span> <span class="n">td</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="err">，</span> <span class="n">bgcolor</span><span class="o">=</span><span class="err">&#39;#</span><span class="n">ABABAB</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">print</span> <span class="n">page</span><span class="p">.</span><span class="n">render</span><span class="p">()</span>
 </pre></div>
 
 
 <p>pyh.py的使用非常方便也非常直观正如它的说明一样，新的标签只需要用类似<code>&lt;&lt; table()</code>的代码就可以加入到我们的page，我们也可以通过<code>tr1 = tr(bgcolor='#FFFFFF')</code>去实例化一个Tag，在里面添加我们需要的属性然后在加入我们的page中。所有的Tag都可以使用<code>&lt;&lt;</code>去设定自己的子节点标签。</p>
 <h3>2.来看源码</h3>
 <p><strong>1.Tag的<code>__init__</code>作用</strong></p>
-<div class="highlight"><pre><span></span>def __init__(self, *arg, **kw):
-    print arg
-    print kw
-    self.attributes = kw
-    if self.tagname :
-        name = self.tagname
-        self.isSeq = False
-    else:
-        name = &#39;sequence&#39;
-        self.isSeq = True
-    self.id = kw.get(&#39;id&#39;, name)
-    #self.extend(arg)
-    for a in arg: self.addObj(a)
+<div class="highlight"><pre><span class="n">def</span> <span class="n">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">print</span> <span class="n">arg</span>
+    <span class="n">print</span> <span class="n">kw</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">attributes</span> <span class="o">=</span> <span class="n">kw</span>
+    <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="n">tagname</span> <span class="o">:</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">tagname</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">isSeq</span> <span class="o">=</span> <span class="n">False</span>
+    <span class="nl">else:</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">sequence</span><span class="err">&#39;</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">isSeq</span> <span class="o">=</span> <span class="n">True</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">kw</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="err">&#39;</span><span class="n">id</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+    <span class="err">#</span><span class="n">self</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">a</span> <span class="n">in</span> <span class="n">arg</span><span class="o">:</span> <span class="n">self</span><span class="p">.</span><span class="n">addObj</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 
 
 <p>我在源码中加入了两个print，可以看到arg中记录了所有的Content，用于显示的；kw中记录了所有的标签的attributes。这些都可以用于其他函数的使用。</p>
 <p><strong>2.&lt;&lt;是什么</strong>
 初次使用pyh，第一眼最让人好奇的应该就是这个操作符了。为什么用它就能把标签放进去呢？ctrl+左键进入源码</p>
-<div class="highlight"><pre><span></span>def __lshift__(self, obj):
-        self += obj
-        print self
-        if isinstance(obj, Tag):
-            return obj
+<div class="highlight"><pre><span class="n">def</span> <span class="n">__lshift__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span><span class="o">:</span>
+        <span class="n">self</span> <span class="o">+=</span> <span class="n">obj</span>
+        <span class="n">print</span> <span class="n">self</span>
+        <span class="k">if</span> <span class="n">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Tag</span><span class="p">)</span><span class="o">:</span>
+            <span class="k">return</span> <span class="n">obj</span>
 </pre></div>
 
 
 <p>上面的代码我稍微加了两个print，以便我们更清晰的看到它的结构。</p>
-<div class="highlight"><pre><span></span>page = PyH(&#39;aaa&#39;)
-page &lt;&lt; h1(&#39;aaa&#39;)
-tab = page &lt;&lt; table(&#39;bbb&#39; bgcolor=&#39;#ABABAB&#39;)
-atr = tab &lt;&lt; tr(&#39;bbb&#39;)
-atr &lt;&lt; td(&#39;ccc&#39;)
-page &lt;&lt; div()
+<div class="highlight"><pre><span class="n">page</span> <span class="o">=</span> <span class="n">PyH</span><span class="p">(</span><span class="err">&#39;</span><span class="n">aaa</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">page</span> <span class="o">&lt;&lt;</span> <span class="n">h1</span><span class="p">(</span><span class="err">&#39;</span><span class="n">aaa</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">tab</span> <span class="o">=</span> <span class="n">page</span> <span class="o">&lt;&lt;</span> <span class="n">table</span><span class="p">(</span><span class="err">&#39;</span><span class="n">bbb</span><span class="err">&#39;</span> <span class="n">bgcolor</span><span class="o">=</span><span class="err">&#39;#</span><span class="n">ABABAB</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">atr</span> <span class="o">=</span> <span class="n">tab</span> <span class="o">&lt;&lt;</span> <span class="n">tr</span><span class="p">(</span><span class="err">&#39;</span><span class="n">bbb</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">atr</span> <span class="o">&lt;&lt;</span> <span class="n">td</span><span class="p">(</span><span class="err">&#39;</span><span class="n">ccc</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">page</span> <span class="o">&lt;&lt;</span> <span class="n">div</span><span class="p">()</span>
 </pre></div>
 
 
 <p>我们可以看到，这样的话我们把层级结构就放入了一个list中，这样每个层级都会记录它的tagname还有相应的标签内容。</p>
 <p><strong>3.render()做什么用</strong></p>
-<div class="highlight"><pre><span></span>def render(self):
-        result = &#39;&#39;
-        if self.tagname:
-            result = &#39;<span class="err">&lt;</span>%s%s%s&gt;&#39; % (self.tagname, self.renderAtt(), self.selfClose()*&#39; /&#39;)
-        if not self.selfClose():
-            for c in self:
-                if isinstance(c, Tag):
-                    result += c.render()
-                else:
-                    result += c
-            if self.tagname:
-                result += &#39;<span class="err">&lt;</span>/%s&gt;&#39; % self.tagname
-        result += &#39;\n&#39;
-        return result
+<div class="highlight"><pre><span class="nx">def</span> <span class="nb">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self.</span><span class="nb">tagname</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="s1">&#39;&lt;%s%s%s&gt;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self.</span><span class="nb">tagname</span><span class="p">,</span> <span class="bp">self.</span><span class="nx">renderAtt</span><span class="p">(),</span> <span class="bp">self.</span><span class="nx">selfClose</span><span class="p">()</span><span class="o">*</span><span class="s1">&#39; /&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self.</span><span class="nx">selfClose</span><span class="p">():</span>
+            <span class="nb">for</span> <span class="n">c</span> <span class="k">in</span> <span class="bp">self</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nx">isinstance</span><span class="p">(</span><span class="nx">c</span><span class="p">,</span> <span class="kt">Tag</span><span class="p">):</span>
+                    <span class="nb">result</span> <span class="o">+=</span> <span class="nx">c.render</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nb">result</span> <span class="o">+=</span> <span class="nx">c</span>
+            <span class="k">if</span> <span class="bp">self.</span><span class="nb">tagname</span><span class="p">:</span>
+                <span class="nb">result</span> <span class="o">+=</span> <span class="s1">&#39;&lt;/%s&gt;&#39;</span> <span class="o">%</span> <span class="bp">self.</span><span class="nb">tagname</span>
+        <span class="nb">result</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="k">return</span> <span class="nb">result</span>
 </pre></div>
 
 
 <p>render函数实现了将<code>__lsshift__</code>中存入的self信息全部取出之后，形成HTML文件。而这里使用到的<code>self.renderAtt()</code>目的是将attributes形式格式以放入我们的文件中；<code>self.selfClose()</code>判断特定的标签从而有特殊的写入形式。</p>
 <p><strong>4.Pyh的工厂</strong>
 上面简单介绍了一下Tag类的一些作用，一个Tag类自然不能覆盖所有的标签，所以PyH提供了一个工厂类</p>
-<div class="highlight"><pre><span></span>def TagFactory(name):
-    class f(Tag):
-        tagname = name
-    f.__name__ = name
-    return f
+<div class="highlight"><pre><span class="n">def</span> <span class="n">TagFactory</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">class</span> <span class="n">f</span><span class="p">(</span><span class="n">Tag</span><span class="p">)</span><span class="o">:</span>
+        <span class="n">tagname</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="n">f</span><span class="p">.</span><span class="n">__name__</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="k">return</span> <span class="n">f</span>
 
-thisModule = modules[__name__]
+<span class="n">thisModule</span> <span class="o">=</span> <span class="n">modules</span><span class="p">[</span><span class="n">__name__</span><span class="p">]</span>
 
-for t in tags: setattr(thisModule, t, TagFactory(t))
+<span class="k">for</span> <span class="n">t</span> <span class="n">in</span> <span class="n">tags</span><span class="o">:</span> <span class="n">setattr</span><span class="p">(</span><span class="n">thisModule</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">TagFactory</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
 </pre></div>
 
 

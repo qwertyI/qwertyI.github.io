@@ -32,7 +32,7 @@
             <li class="list-inline-item"><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
             <li class="list-inline-item"><a href="http://python.org/" target="_blank">Python.org</a></li>
             <li class="list-inline-item"><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
-            <li class="list-inline-item"><a href="#" target="_blank">cnblog</a></li>
+            <li class="list-inline-item"><a href="https://www.cnblogs.com/" target="_blank">cnblog</a></li>
           </ul>
         </div>
       </div>
@@ -66,16 +66,16 @@
   <div class="content">
     <p><strong>设置下载文件的存储位置</strong></p>
 <p>对于有下载文件并且读取下载内容来确定测试结果的小伙伴来说，这很实用！</p>
-<div class="highlight"><pre><span></span>options = webdriver.ChromeOptions()
-pref = {&quot;download.default_directory&quot;: your_download_path}
-options.add_experimental_option(&quot;prefs&quot;, pref)
+<div class="highlight"><pre><span class="n">options</span> <span class="o">=</span> <span class="n">webdriver</span><span class="p">.</span><span class="n">ChromeOptions</span><span class="p">()</span>
+<span class="n">pref</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;download.default_directory&quot;</span><span class="o">:</span> <span class="n">your_download_path</span><span class="p">}</span>
+<span class="n">options</span><span class="p">.</span><span class="n">add_experimental_option</span><span class="p">(</span><span class="s">&quot;prefs&quot;</span><span class="p">,</span> <span class="n">pref</span><span class="p">)</span>
 </pre></div>
 
 
 <p><strong>获取当前case名称</strong></p>
 <p>当一个测试类中有N个测试case时，无法区分当前测试进行到哪个case有时会很难受！打印出来就好了！</p>
-<div class="highlight"><pre><span></span>print &#39;current testcase : {0}&#39;.format(unittest.TestCase.id(self))
-&gt;&gt;&gt; current testcase : test1.your_test_class.your_test_case
+<div class="highlight"><pre><span class="n">print</span> <span class="err">&#39;</span><span class="n">current</span> <span class="n">testcase</span> <span class="o">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">}</span><span class="err">&#39;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">unittest</span><span class="p">.</span><span class="n">TestCase</span><span class="p">.</span><span class="n">id</span><span class="p">(</span><span class="n">self</span><span class="p">))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">current</span> <span class="n">testcase</span> <span class="o">:</span> <span class="n">test1</span><span class="p">.</span><span class="n">your_test_class</span><span class="p">.</span><span class="n">your_test_case</span>
 </pre></div>
 
 
@@ -83,43 +83,43 @@ options.add_experimental_option(&quot;prefs&quot;, pref)
 <p>寻找同一个元素两次，找到了继续执行，没有找到则寻找第二次，仍旧没找到则报错！
 预防一个元素因为页面加载原因无法找到而导致的失败</p>
 <p>使用ActionChains寻找元素，防止发生找到元素，但是无法点击该点的错误！</p>
-<div class="highlight"><pre><span></span>def action_click(self, name, value):
-    attempts = 0
-    while attempts &lt; 2:
-        try:
-            self.driver.implicitly_wait(wait_time)
-            ele = self.driver.find_element(by=name, value=value)
-            ActionChains(self.driver).move_to_element(ele).click().perform()
-            time.sleep(sleep_time)
-            break
-        except Exception:
-            attempts += 1
-            if attempts == 2:
-                print &#39;can\&#39;t find correct WebElement, please check it!&#39;
+<div class="highlight"><pre><span class="n">def</span> <span class="n">action_click</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">attempts</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">attempts</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="o">:</span>
+        <span class="nl">try:</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">driver</span><span class="p">.</span><span class="n">implicitly_wait</span><span class="p">(</span><span class="n">wait_time</span><span class="p">)</span>
+            <span class="n">ele</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">driver</span><span class="p">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
+            <span class="n">ActionChains</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">driver</span><span class="p">).</span><span class="n">move_to_element</span><span class="p">(</span><span class="n">ele</span><span class="p">).</span><span class="n">click</span><span class="p">().</span><span class="n">perform</span><span class="p">()</span>
+            <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep_time</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="n">except</span> <span class="n">Exception</span><span class="o">:</span>
+            <span class="n">attempts</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">attempts</span> <span class="o">==</span> <span class="mi">2</span><span class="o">:</span>
+                <span class="n">print</span> <span class="err">&#39;</span><span class="n">can</span><span class="err">\&#39;</span><span class="n">t</span> <span class="n">find</span> <span class="n">correct</span> <span class="n">WebElement</span><span class="p">,</span> <span class="n">please</span> <span class="n">check</span> <span class="n">it</span><span class="o">!</span><span class="err">&#39;</span>
 </pre></div>
 
 
 <p><strong>点击动态生成的按钮</strong></p>
 <p>测试过程中，有时会碰到右键点击才会出现的菜单栏，因为是动态生成的，有些甚至不会有Html信息，不过不用着急，selenium自有办法对付：</p>
-<div class="highlight"><pre><span></span>action = ActionChains(self.driver.driver)
-action.move_by_offset(500, 500).context_click().send_keys(Keys.ARROW_DOWN).send_keys(Keys.RETURN)
+<div class="highlight"><pre><span class="n">action</span> <span class="o">=</span> <span class="n">ActionChains</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">driver</span><span class="p">.</span><span class="n">driver</span><span class="p">)</span>
+<span class="n">action</span><span class="p">.</span><span class="n">move_by_offset</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">).</span><span class="n">context_click</span><span class="p">().</span><span class="n">send_keys</span><span class="p">(</span><span class="n">Keys</span><span class="p">.</span><span class="n">ARROW_DOWN</span><span class="p">).</span><span class="n">send_keys</span><span class="p">(</span><span class="n">Keys</span><span class="p">.</span><span class="n">RETURN</span><span class="p">)</span>
 </pre></div>
 
 
 <p>此类动态生成的菜单，多有使用按键操作的方法！此时只需要调用Keys类中的各种键盘按键就可以操作选中所需的按钮！最后RETURN实现操作！</p>
 <p><strong>选择文件</strong></p>
 <p>上传文件时，如果Html贴心的给你设置了上传路径的Input标签，那就可以很舒服的使用sendkeys，将路径键入之后就可以了！但是有时前端工程师并不那么的贴心（对，我说的就是谷歌的前端工程师），他会使用各种高端技巧来生成文件路径，其中有一种叫动态生成，他会调用win/ubuntu等系统的文件选择界面，选中后动态生成文件路径（懵逼脸）！这时就需要用到额外的包类：pywinauto。。此功能仅限win系统使用。</p>
-<div class="highlight"><pre><span></span>app = pywinauto.application.Application()
-time.sleep(win_sleep_time)
-main_window = app[u&#39;Open&#39;]
-ctrl = main_window[u&#39;Edit&#39;]
-main_window.SetFocus()
-ctrl.Click()
-time.sleep(win_sleep_time)
-ctrl.TypeKeys(file_path)
-time.sleep(win_sleep_time)
-ctrl_bis = main_window[u&#39;OpenButton&#39;]  # open file button
-time.sleep(win_sleep_time)
+<div class="highlight"><pre><span class="n">app</span> <span class="o">=</span> <span class="n">pywinauto</span><span class="p">.</span><span class="n">application</span><span class="p">.</span><span class="n">Application</span><span class="p">()</span>
+<span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">win_sleep_time</span><span class="p">)</span>
+<span class="n">main_window</span> <span class="o">=</span> <span class="n">app</span><span class="p">[</span><span class="n">u</span><span class="err">&#39;</span><span class="n">Open</span><span class="err">&#39;</span><span class="p">]</span>
+<span class="n">ctrl</span> <span class="o">=</span> <span class="n">main_window</span><span class="p">[</span><span class="n">u</span><span class="err">&#39;</span><span class="n">Edit</span><span class="err">&#39;</span><span class="p">]</span>
+<span class="n">main_window</span><span class="p">.</span><span class="n">SetFocus</span><span class="p">()</span>
+<span class="n">ctrl</span><span class="p">.</span><span class="n">Click</span><span class="p">()</span>
+<span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">win_sleep_time</span><span class="p">)</span>
+<span class="n">ctrl</span><span class="p">.</span><span class="n">TypeKeys</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+<span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">win_sleep_time</span><span class="p">)</span>
+<span class="n">ctrl_bis</span> <span class="o">=</span> <span class="n">main_window</span><span class="p">[</span><span class="n">u</span><span class="err">&#39;</span><span class="n">OpenButton</span><span class="err">&#39;</span><span class="p">]</span>  <span class="err">#</span> <span class="n">open</span> <span class="n">file</span> <span class="n">button</span>
+<span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">win_sleep_time</span><span class="p">)</span>
 </pre></div>
 
 
